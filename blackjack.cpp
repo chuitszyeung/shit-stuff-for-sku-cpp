@@ -3,24 +3,24 @@
 #include <time.h>
 #include <stdlib.h>
 using namespace std;
-int RNG,usernum,userinput;
+int RNG,usernum,userinput,cpunum;
 int main(){
 	srand(time(NULL));
 	while(usernum < 21){
 	cout << "Type 1 for hit, Type 2 for stand, Type 3 to end\n";
 	cin >> userinput;
 	if (userinput == 1){
-	RNG = rand () % 7+1;
-	switch (RNG){
+	RNG = rand () % 10+1;
+	switch (RNG){ //Switch starts
 	case 1:
-	if (usernum > 10) {
+	if (usernum > 10) { //Ace stand for 1 and 11 starts
 		usernum = usernum + 1;
 		cout << "Your value " << usernum << "\n";
 	}
 	else {
 		usernum = usernum + 11;
 		cout << "Your value " << usernum << "\n";
-	}
+	} //Ace stand for 1 and 11 ends
 	break;
 	case 2:
 	usernum = usernum + 2;
@@ -58,17 +58,82 @@ int main(){
 	usernum = usernum + 10;
 	cout <<"Your value " << usernum << "\n";
 	break;
-    }
-    if (usernum == 21){
-    	cout <<"You won";
-    }
-    else if (usernum > 21){
-    	cout <<"You lost";
-    }
+    } //Swutch ends
+    RNG = rand () % 10+1;
+   	switch(RNG){//CPU switch starts
+  	case 1:
+	if (cpunum > 10) { //Ace stand for 1 and 11 starts
+		cpunum = cpunum + 1;
+	}
+	else {
+		cpunum = cpunum + 11;
+	} //Ace stand for 1 and 11 ends
+	break;
+	case 2:
+	cpunum = cpunum + 2;
+	break;
+	case 3:
+	cpunum = cpunum + 3;
+	break;
+	case 4:
+	cpunum = cpunum + 4;
+	break;
+	case 5:
+	cpunum = cpunum + 5;
+	break;
+	case 6:
+	cpunum = cpunum + 6;
+	break;
+	case 7:
+	cpunum = cpunum + 7;
+	case 8:
+	cpunum = cpunum + 8;
+	break;
+	case 9:
+	cpunum = cpunum + 9;
+	break;
+	case 10:
+	cpunum = cpunum + 10;
+	break;
+  }//CPU swutch ends
+  if (usernum == 21 and cpunum != 21){
+  	cout << "You win\n";
+  	cout <<"CPU value : " << cpunum << "\n";
+  	cout <<"Your value: " << usernum << "\n";
+  	return 0;
+  } else if (cpunum == 21 and usernum != 21){
+  	cout << "You lose\n";
+  	cout <<"CPU value : " << cpunum << "\n";
+  	cout <<"Your value: " << usernum << "\n";
+  	return 0;
+  } else if (cpunum == usernum){
+  	cout << "Tie";
+  	cout <<"CPU value : " << cpunum << "\n";
+  	cout <<"Your value: " << usernum << "\n";
+  	return 0;
   }
-  else if (userinput == 2) {
-  	std::cout << "Your value: " << usernum << "\n" ;
+  } //While Loop ends
+  if (userinput == 2) { //Stand
+  	cout << "Your value: " << usernum << "\n" ;
+  	if (cpunum > usernum and cpunum < 22){
+  		cout << "You lose\n";
+  		cout <<"CPU value : " << cpunum << "\n";
+  		cout <<"Your value: " << usernum << "\n";
+  		return 0;
+  	} else if (cpunum < usernum and usernum < 22) {
+  		cout <<"You win\n";
+  		cout <<"CPU value : " << cpunum << "\n";
+  		cout <<"Your value: " << usernum << "\n";
+  		return 0;
+  	} else if (cpunum == usernum){
+  		cout<<"Tie";
+  		return 0;
+  	}
   	return 0;
   } 
+  if (userinput == 3){
+  	cout << "Ok loser\n";
+  	return 0;
+  }
 } 
 }
